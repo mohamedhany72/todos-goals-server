@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <style>
+        #todoEmail{
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            border: 2px solid #000;
+            border-radius: 15px;
+            /* margin: 20px; */
+            /* width: 100%; */
+            margin-top: 20px;
+        }
+        #todoEmail p{
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 20px;
+            text-align: left;
+            font-size: 1.3rem;
+        }
+        h1{
+            margin-bottom: 40px;
+            color: #3742fa;
+        }
+        h2{
+            margin-bottom: 30px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id='todoEmail' class="container">
+        <h1>Todo App</h1>
+        <h2>Recover Password</h2>
+        
+        <p>Hi {{name}}</p>
+        <p>
+            Please go this link and use the provided code to recover your password <br>
+            code: {{code}} 
+        </p>
+        
+        <p>Thanks <br> Todos App Team</p>
+        
+    </div>    
+</body>
+</html>
