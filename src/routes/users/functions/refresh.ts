@@ -29,11 +29,14 @@ const refresh = async (
         res.status(500).send("server side error!");
         return;
     }
-
+    const date = new Date();
+    date.setHours(date.getHours() + (24*7));
+    // Secure; 
+    res.setHeader('Set-Cookie', `refresh=${result.refresh}; Expires=${date}; HttpOnly; Path=/`)
     res.status(200).json({
         user,
         access,
-        refresh: result.refresh
+        // refresh: result.refresh
     });
 };
 

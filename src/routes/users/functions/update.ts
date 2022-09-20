@@ -6,6 +6,7 @@ import {
 } from "../../../utils/createTokens";
 import destructureUser from "../../../utils/destructureUser";
 import { updateRefresh } from "../../../utils/createBrowser";
+import { NAME_REGEX } from "./register";
 
 const model = new UserModel();
 
@@ -22,7 +23,8 @@ const update = async (
     const oldUser = res.locals.user;
 
     // validate data
-    if (name == null || name.length <= 3) {
+    // const NAME_REGEX = /^[A-z][A-z0-9-_ ]{2,23}$/;
+    if (name == null || NAME_REGEX.test(name)) {
         res.status(406).send("name must have at least 3 characters!");
     }
 
@@ -64,7 +66,13 @@ const update = async (
     }
 
     // send back the successfull response
-    res.status(200).json({ user, access, refresh });
+    const date = new Date();
+    date.setHours(date.getHours() + (24*7));
+    // Secure; 
+    res.setHeader('Set-Cookie', `refresh=${refresh}; Expires=${date}; HttpOnly; Path=/`)
+    res.status(200).json({ user, access
+        // , refresh 
+    });
     return;
 };
 

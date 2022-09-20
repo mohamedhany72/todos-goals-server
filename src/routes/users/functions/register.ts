@@ -14,6 +14,8 @@ import { createBrowser } from "../../../utils/createBrowser";
 const model = new UserModel();
 // const tokens = new TokenModel();
 
+export const NAME_REGEX = /^[A-z][A-z0-9-_ ]{2,23}$/;
+
 const register = async (
     req: express.Request,
     res: express.Response
@@ -31,11 +33,12 @@ const register = async (
     // const emailRes = await validate(email);
 
     if (findUser.success) {
-        res.status(406).send("email exists, please try to login in!");
+        res.status(409).send("email exists, please try to login in!");
         return;
     }
 
-    if (name == null || name.length <= 3) {
+    
+    if (name == null || !NAME_REGEX.test(name)) {
         res.status(406).send("name must have at least 3 characters!");
         return;
     }
@@ -84,11 +87,30 @@ const register = async (
 
     sendVerificationEmail(user);
 
+    // res.cookie('isLoggedin', true, {
+    //     secure: true,
+    //     httpOnly: true,
+    //     expires: date,
+    //     domain: 'example.com',
+    //     sameSite: 'strict',
+    // });
+
+    const refreshDate = new Date();
+    refreshDate.setHours(refreshDate.getHours() + (24*7));
+    
+    const browserDate = new Date();
+    browserDate.setHours(browserDate.getHours() + (365*7));
+    // Secure;
+    res.setHeader('Set-Cookie', [
+        `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
+        `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
+    ])
+    // res.setHeader('Set-Cookie', )
     res.status(200).json({
         user,
         access,
-        refresh,
-        browser
+        // refresh,
+        // browser
     });
 
     return;
