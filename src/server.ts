@@ -39,7 +39,7 @@ app.get("/", (_req: express.Request, res: express.Response): void => {
     res.send("app running!");
 });
 
-app.use("/api", allowedMethods ,routes);
+app.use("/api", allowedMethods, routes);
 
 app.listen(PORT, (): void => {
     console.log(`server started at port: ${PORT}`);

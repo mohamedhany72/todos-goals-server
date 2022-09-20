@@ -23,9 +23,9 @@ const update = async (
     const oldUser = res.locals.user;
 
     // validate data
-    // const NAME_REGEX = /^[A-z][A-z0-9-_ ]{2,23}$/;
-    if (name == null || NAME_REGEX.test(name)) {
+    if (name == null || !NAME_REGEX.test(name)) {
         res.status(406).send("name must have at least 3 characters!");
+        return;
     }
 
     if (gender == null || (Number(gender) !== 1 && Number(gender) !== 2)) {
@@ -67,11 +67,16 @@ const update = async (
 
     // send back the successfull response
     const date = new Date();
-    date.setHours(date.getHours() + (24*7));
-    // Secure; 
-    res.setHeader('Set-Cookie', `refresh=${refresh}; Expires=${date}; HttpOnly; Path=/`)
-    res.status(200).json({ user, access
-        // , refresh 
+    date.setHours(date.getHours() + 24 * 7);
+    // Secure;
+    res.setHeader(
+        "Set-Cookie",
+        `refresh=${refresh}; Expires=${date}; HttpOnly; Path=/`
+    );
+    res.status(200).json({
+        user,
+        access
+        // , refresh
     });
     return;
 };

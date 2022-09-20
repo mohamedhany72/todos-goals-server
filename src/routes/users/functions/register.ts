@@ -37,7 +37,6 @@ const register = async (
         return;
     }
 
-    
     if (name == null || !NAME_REGEX.test(name)) {
         res.status(406).send("name must have at least 3 characters!");
         return;
@@ -96,19 +95,19 @@ const register = async (
     // });
 
     const refreshDate = new Date();
-    refreshDate.setHours(refreshDate.getHours() + (24*7));
-    
+    refreshDate.setHours(refreshDate.getHours() + 24 * 7);
+
     const browserDate = new Date();
-    browserDate.setHours(browserDate.getHours() + (365*7));
+    browserDate.setHours(browserDate.getHours() + 365 * 7);
     // Secure;
-    res.setHeader('Set-Cookie', [
+    res.setHeader("Set-Cookie", [
         `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
         `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
-    ])
+    ]);
     // res.setHeader('Set-Cookie', )
     res.status(200).json({
         user,
-        access,
+        access
         // refresh,
         // browser
     });

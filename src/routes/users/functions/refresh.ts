@@ -30,12 +30,15 @@ const refresh = async (
         return;
     }
     const date = new Date();
-    date.setHours(date.getHours() + (24*7));
-    // Secure; 
-    res.setHeader('Set-Cookie', `refresh=${result.refresh}; Expires=${date}; HttpOnly; Path=/`)
+    date.setHours(date.getHours() + 24 * 7);
+    // Secure;
+    res.setHeader(
+        "Set-Cookie",
+        `refresh=${result.refresh}; Expires=${date}; HttpOnly; Path=/`
+    );
     res.status(200).json({
         user,
-        access,
+        access
         // refresh: result.refresh
     });
 };

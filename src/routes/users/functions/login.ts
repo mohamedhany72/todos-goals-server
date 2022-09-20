@@ -61,18 +61,20 @@ const login = async (
     const browser = result.browser as string;
 
     const refreshDate = new Date();
-    refreshDate.setHours(refreshDate.getHours() + (24*7));
-    
+    refreshDate.setHours(refreshDate.getHours() + 24 * 7);
+
     const browserDate = new Date();
-    browserDate.setHours(browserDate.getHours() + (365*7));
+    browserDate.setHours(browserDate.getHours() + 365 * 7);
     // Secure;
-    res.setHeader('Set-Cookie', [
+    res.setHeader("Set-Cookie", [
         `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
         `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
-    ])
+    ]);
 
-    res.status(200).json({ user, access
-        // , refresh, browser 
+    res.status(200).json({
+        user,
+        access
+        // , refresh, browser
     });
     return;
 };

@@ -109,12 +109,22 @@ describe("Testing Routes: Users", (): void => {
             .expect((res) => {
                 access = "Bearer " + res.body.access;
                 badAccess = access + "inavlid";
-                refresh = res.body.refresh;
-                browser = res.body.browser;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
+                browser = res.headers["set-cookie"][1]
+                    .split(";")[0]
+                    .split("=")[1];
                 badToken = res.body.broswer + "invalid";
                 verifyToken = createVerifyToken(res.body.user);
                 pswdToken = createPswdToken(res.body.user.id);
                 badPswdToken = pswdToken + "k";
+
+                // console.log("------------------------------")
+                // console.log(`Refresh: ${refresh}`)
+                // console.log("------------------------------")
+                // console.log(`Browser: ${browser}`)
+                // console.log("------------------------------")
             });
         expect(response.status).toBe(200);
     });
@@ -180,8 +190,12 @@ describe("Testing Routes: Users", (): void => {
             })
             .expect((res) => {
                 access = "Bearer " + res.body.access;
-                refresh = res.body.refresh;
-                browser = res.body.browser;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
+                browser = res.headers["set-cookie"][1]
+                    .split(";")[0]
+                    .split("=")[1];
             });
         expect(response.status).toBe(200);
     });
@@ -408,8 +422,12 @@ describe("Testing Routes: Users", (): void => {
             })
             .expect((res) => {
                 access = "Bearer " + res.body.access;
-                refresh = res.body.refresh;
-                browser = res.body.browser;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
+                browser = res.headers["set-cookie"][1]
+                    .split(";")[0]
+                    .split("=")[1];
             });
         expect(response.status).toBe(200);
     });
@@ -580,8 +598,12 @@ describe("Testing Routes: Users", (): void => {
             })
             .expect((res) => {
                 access = "Bearer " + res.body.access;
-                refresh = res.body.refresh;
-                browser = res.body.browser;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
+                browser = res.headers["set-cookie"][1]
+                    .split(";")[0]
+                    .split("=")[1];
             });
         expect(response.status).toBe(200);
     });
@@ -609,7 +631,9 @@ describe("Testing Routes: Users", (): void => {
             .set("Cookie", [`browser=${browser};refresh=${refresh}`])
             .expect((res) => {
                 access = "Bearer " + res.body.access;
-                refresh = res.body.refresh;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
             });
         expect(response.status).toBe(200);
     });
@@ -669,8 +693,12 @@ describe("Testing Routes: Users", (): void => {
             })
             .expect((res) => {
                 access = "Bearer " + res.body.access;
-                refresh = res.body.refresh;
-                browser = res.body.browser;
+                refresh = res.headers["set-cookie"][0]
+                    .split(";")[0]
+                    .split("=")[1];
+                browser = res.headers["set-cookie"][1]
+                    .split(";")[0]
+                    .split("=")[1];
             });
         expect(response.status).toBe(200);
     });
