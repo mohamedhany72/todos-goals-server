@@ -221,7 +221,7 @@ describe("Testing Routes: Users", (): void => {
     it("test 'verify' with bad token", async (): Promise<void> => {
         const response = await request.get(mainRoute + `verify/${badToken}`);
         expect(response.status).toBe(403);
-        expect(response.text).toBe("token expired or not valid!");
+        expect(response.text).toBe("Token expired or not valid!");
     });
 
     it("test 'verify' with good token", async (): Promise<void> => {

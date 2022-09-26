@@ -53,6 +53,8 @@ const deleteUser = async (
         return;
     }
 
+    res.clearCookie("browser");
+    res.clearCookie("refresh");
     res.status(200).send("Account deleted!");
     return;
 };

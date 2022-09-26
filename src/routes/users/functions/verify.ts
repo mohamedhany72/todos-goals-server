@@ -19,15 +19,15 @@ const verify = async (
         TOKEN_SECRET as string,
         async (err, decoded) => {
             if (err) {
-                res.status(403).send("token expired or not valid!");
+                res.status(403).send("Token expired or not valid!");
                 return;
             }
-            const { success, msg } = await model.verify(
+            const { success } = await model.verify(
                 (decoded as jwt.JwtPayload).user.email
             );
 
             if (!success) {
-                res.status(500).send(`server side error: ${msg}`);
+                res.status(500).send(`Server side error`);
                 return;
             }
 

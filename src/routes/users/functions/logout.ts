@@ -21,7 +21,8 @@ const logout = async (
         res.status(500).send("Server side error!");
         return;
     }
-
+    res.clearCookie("browser");
+    res.clearCookie("refresh");
     res.status(200).send("User logged out from this device!");
     return;
 };
