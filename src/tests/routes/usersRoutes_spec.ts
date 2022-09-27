@@ -112,7 +112,7 @@ describe("Testing Routes: Users", (): void => {
                 refresh = res.headers["set-cookie"][0]
                     .split(";")[0]
                     .split("=")[1];
-                browser = res.headers["set-cookie"][1]
+                browser = res.headers["set-cookie"][3]
                     .split(";")[0]
                     .split("=")[1];
                 badToken = res.body.broswer + "invalid";
@@ -120,11 +120,16 @@ describe("Testing Routes: Users", (): void => {
                 pswdToken = createPswdToken(res.body.user.id);
                 badPswdToken = pswdToken + "k";
 
-                // console.log("------------------------------")
-                // console.log(`Refresh: ${refresh}`)
-                // console.log("------------------------------")
-                // console.log(`Browser: ${browser}`)
-                // console.log("------------------------------")
+                console.group("cookies")
+                console.log("------------------------------")
+                console.log(`Refresh: ${refresh}`)
+                console.log("------------------------------")
+                console.log(`Browser: ${browser}`)
+                console.log("------------------------------")
+                console.log(`all:`)
+                console.log(res.headers["set-cookie"][3])
+                console.log("------------------------------")
+                console.groupEnd()
             });
         expect(response.status).toBe(200);
     });
@@ -193,7 +198,7 @@ describe("Testing Routes: Users", (): void => {
                 refresh = res.headers["set-cookie"][0]
                     .split(";")[0]
                     .split("=")[1];
-                browser = res.headers["set-cookie"][1]
+                browser = res.headers["set-cookie"][3]
                     .split(";")[0]
                     .split("=")[1];
             });
@@ -425,7 +430,7 @@ describe("Testing Routes: Users", (): void => {
                 refresh = res.headers["set-cookie"][0]
                     .split(";")[0]
                     .split("=")[1];
-                browser = res.headers["set-cookie"][1]
+                browser = res.headers["set-cookie"][3]
                     .split(";")[0]
                     .split("=")[1];
             });
@@ -601,7 +606,7 @@ describe("Testing Routes: Users", (): void => {
                 refresh = res.headers["set-cookie"][0]
                     .split(";")[0]
                     .split("=")[1];
-                browser = res.headers["set-cookie"][1]
+                browser = res.headers["set-cookie"][3]
                     .split(";")[0]
                     .split("=")[1];
             });
@@ -696,7 +701,7 @@ describe("Testing Routes: Users", (): void => {
                 refresh = res.headers["set-cookie"][0]
                     .split(";")[0]
                     .split("=")[1];
-                browser = res.headers["set-cookie"][1]
+                browser = res.headers["set-cookie"][3]
                     .split(";")[0]
                     .split("=")[1];
             });

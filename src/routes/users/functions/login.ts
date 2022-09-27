@@ -9,6 +9,7 @@ import {
 import dotenv from "dotenv";
 import destructureUser from "../../../utils/destructureUser";
 import { createBrowser } from "../../../utils/createBrowser";
+import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 
 dotenv.config();
 
@@ -60,16 +61,8 @@ const login = async (
 
     const browser = result.browser as string;
 
-    const refreshDate = new Date();
-    refreshDate.setHours(refreshDate.getHours() + 24 * 7);
-
-    const browserDate = new Date();
-    browserDate.setHours(browserDate.getHours() + 365 * 7);
-    // Secure;
-    res.setHeader("Set-Cookie", [
-        `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
-        `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
-    ]);
+    refreshCookie(res, refresh as string);
+    browserCookie(res, browser as string);
 
     res.status(200).json({
         user,

@@ -10,6 +10,7 @@ import destructureUser from "../../../utils/destructureUser";
 import schema from "../../../utils/schema";
 import sendVerificationEmail from "../../../utils/sendVerify";
 import { createBrowser } from "../../../utils/createBrowser";
+import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 
 const model = new UserModel();
 // const tokens = new TokenModel();
@@ -86,25 +87,20 @@ const register = async (
 
     sendVerificationEmail(user);
 
-    // res.cookie('isLoggedin', true, {
-    //     secure: true,
-    //     httpOnly: true,
-    //     expires: date,
-    //     domain: 'example.com',
-    //     sameSite: 'strict',
-    // });
+    // const refreshDate = new Date();
+    // refreshDate.setHours(refreshDate.getHours() + 24 * 7);
 
-    const refreshDate = new Date();
-    refreshDate.setHours(refreshDate.getHours() + 24 * 7);
+    // const browserDate = new Date();
+    // browserDate.setHours(browserDate.getHours() + 365 * 7);
+    // // Secure;
+    // res.setHeader("Set-Cookie", [
+    //     `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
+    //     `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
+    // ]);
 
-    const browserDate = new Date();
-    browserDate.setHours(browserDate.getHours() + 365 * 7);
-    // Secure;
-    res.setHeader("Set-Cookie", [
-        `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
-        `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
-    ]);
-    // res.setHeader('Set-Cookie', )
+    refreshCookie(res, refresh as string);
+    browserCookie(res, browser as string);
+
     res.status(200).json({
         user,
         access

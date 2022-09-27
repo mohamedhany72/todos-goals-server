@@ -17,6 +17,7 @@ import deleteUser from "./functions/delete";
 import browserAuth from "../../utils/middlewares/browserAuth";
 import sendcsrf from "./functions/sendCsrf";
 import sendVerify from "./functions/sendVerify";
+import getUser from "./functions/getUser";
 
 const users = express.Router();
 const csrfProtection = csrf({ cookie: true });
@@ -26,6 +27,9 @@ users.post("/login", login); // done
 
 // register
 users.post("/register", register); // done
+
+// get user
+users.get("/user", accessAuth, getUser)
 
 // verify
 users.get("/verify/:verify", verify); // done
@@ -67,7 +71,5 @@ users.delete("/logoutall", accessAuth, browserAuth, logoutAll);
 users.delete("/delete", accessAuth, csrfProtection, deleteUser);
 
 export default users;
-
-// get user --> not in this app
 
 // get users --> not in this app

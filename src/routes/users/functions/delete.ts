@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcrypt";
 import { User, UserModel } from "../../../models/user";
 import dotenv from "dotenv";
+import { clearCookies } from "../../../utils/manageCookies";
 dotenv.config();
 
 const { BCRYPT_PASSWORD: pepper } = process.env;
@@ -53,8 +54,9 @@ const deleteUser = async (
         return;
     }
 
-    res.clearCookie("browser");
-    res.clearCookie("refresh");
+    // res.clearCookie("browser");
+    // res.clearCookie("refresh");
+    clearCookies(res);
     res.status(200).send("Account deleted!");
     return;
 };

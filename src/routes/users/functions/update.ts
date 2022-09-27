@@ -7,6 +7,7 @@ import {
 import destructureUser from "../../../utils/destructureUser";
 import { updateRefresh } from "../../../utils/createBrowser";
 import { NAME_REGEX } from "./register";
+import { refreshCookie } from "../../../utils/manageCookies";
 
 const model = new UserModel();
 
@@ -66,13 +67,7 @@ const update = async (
     }
 
     // send back the successfull response
-    const date = new Date();
-    date.setHours(date.getHours() + 24 * 7);
-    // Secure;
-    res.setHeader(
-        "Set-Cookie",
-        `refresh=${refresh}; Expires=${date}; HttpOnly; Path=/`
-    );
+    refreshCookie(res, refresh)
     res.status(200).json({
         user,
         access
