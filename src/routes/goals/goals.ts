@@ -48,7 +48,7 @@ const deleteGoal = async (
     res: express.Response
 ): Promise<void> => {
     const user = res.locals.user;
-    const id = req.body.id;
+    const id = req.params.id;
 
     const { success, load } = await model.show(id as string | number);
 
@@ -80,6 +80,6 @@ goals.get("/", getGoals);
 goals.post("/", addGoal);
 
 // delete goal
-goals.delete("/", deleteGoal);
+goals.delete("/:id", deleteGoal);
 
 export default goals;

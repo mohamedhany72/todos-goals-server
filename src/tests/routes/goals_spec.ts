@@ -128,22 +128,17 @@ describe("Testing Routes: Goals", (): void => {
     });
 
     it("test 'delete goal' that don't exist", async (): Promise<void> => {
+        const wrongID = (goal.id as number) + 1
         const response = await request
-            .delete(mainRoute)
-            .set("Authorization", access)
-            .send({
-                id: (goal.id as number) + 1
-            });
+            .delete(`${mainRoute}/${wrongID}`)
+            .set("Authorization", access);
         expect(response.status).toBe(404);
     });
 
     it("test 'delete goal' that exists", async (): Promise<void> => {
         const response = await request
-            .delete(mainRoute)
-            .set("Authorization", access)
-            .send({
-                id: goal.id
-            });
+            .delete(`${mainRoute}/${goal.id}`)
+            .set("Authorization", access);
         expect(response.status).toBe(200);
     });
 

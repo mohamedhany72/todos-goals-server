@@ -51,7 +51,7 @@ const toggleTodo = async (
     const id = req.body.id;
 
     // console.log(user.id);
-
+    
     // select todo
     const result = await model.show(id as string | number);
 
@@ -84,7 +84,7 @@ const deleteTodo = async (
     res: express.Response
 ): Promise<void> => {
     const user = res.locals.user;
-    const id = req.body.id;
+    const id = req.params.id;
 
     // select todo
     const result = await model.show(id as string | number);
@@ -121,6 +121,6 @@ todos.post("/", addTodo);
 todos.put("/", toggleTodo);
 
 // delete todo
-todos.delete("/", deleteTodo);
+todos.delete("/:id", deleteTodo);
 
 export default todos;

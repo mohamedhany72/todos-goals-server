@@ -149,22 +149,17 @@ describe("Testing Routes: Todos", (): void => {
     });
 
     it("test 'delete todo' that don't exist", async (): Promise<void> => {
+        const wrongID = (todo.id as number) + 1;
         const response = await request
-            .delete(mainRoute)
-            .set("Authorization", access)
-            .send({
-                id: (todo.id as number) + 1
-            });
+            .delete(`${mainRoute}/${wrongID}`)
+            .set("Authorization", access);
         expect(response.status).toBe(404);
     });
 
     it("test 'delete todo' that exists", async (): Promise<void> => {
         const response = await request
-            .delete(mainRoute)
-            .set("Authorization", access)
-            .send({
-                id: todo.id
-            });
+            .delete(`${mainRoute}/${todo.id}`)
+            .set("Authorization", access);
         expect(response.status).toBe(200);
     });
 
