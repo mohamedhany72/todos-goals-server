@@ -3,6 +3,11 @@ import { UserModel, User } from "../../../models/user";
 import { createPswdToken } from "../../../utils/createTokens";
 import destructureUser from "../../../utils/destructureUser";
 import mailer from "../../../utils/mailer";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const {FRONT_END_ROOT_URL} = process.env;
 
 const model = new UserModel();
 
@@ -10,7 +15,7 @@ const forgetPswd = async (
     req: express.Request,
     res: express.Response
 ): Promise<void> => {
-    const email = req.body.email;
+    const email = req.body.email?.toLowerCase();
 
     // select email and check existence
     const { success, load } = await model.select(email);
@@ -26,7 +31,7 @@ const forgetPswd = async (
     // send email to user
     mailer(user.email, "Recover Password", "forgetPswd", {
         name: user.name,
-        code: pswdToken
+        code: `${FRONT_END_ROOT_URL}recover/${pswdToken}`
     });
 
     res.status(200).send("Email sent!");

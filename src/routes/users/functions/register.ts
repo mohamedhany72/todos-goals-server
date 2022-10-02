@@ -23,7 +23,7 @@ const register = async (
 ): Promise<void> => {
     //verify data
     const name = req.body.name;
-    const email = req.body.email;
+    const email = req.body.email?.toLowerCase();
     const gender = req.body.gender;
     const pswd = req.body.pswd;
     const cpswd = req.body.cpswd;

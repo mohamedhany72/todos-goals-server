@@ -21,7 +21,7 @@ const getUser = async (
         }
     }
 
-    res.status(200).json(user);
+    res.status(200).json({user});
     return;
 }
 

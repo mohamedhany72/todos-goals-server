@@ -84,7 +84,8 @@ const recoverPswdGet = async (
             res.status(401).send("You are not authorizied!");
             return;
         }
-
+        
+        console.log("_csrf: ", req.csrfToken())
         res.status(200).json({ code, csrfToken: req.csrfToken() });
         return;
     });

@@ -119,17 +119,6 @@ describe("Testing Routes: Users", (): void => {
                 verifyToken = createVerifyToken(res.body.user);
                 pswdToken = createPswdToken(res.body.user.id);
                 badPswdToken = pswdToken + "k";
-
-                console.group("cookies")
-                console.log("------------------------------")
-                console.log(`Refresh: ${refresh}`)
-                console.log("------------------------------")
-                console.log(`Browser: ${browser}`)
-                console.log("------------------------------")
-                console.log(`all:`)
-                console.log(res.headers["set-cookie"][3])
-                console.log("------------------------------")
-                console.groupEnd()
             });
         expect(response.status).toBe(200);
     });

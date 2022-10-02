@@ -21,7 +21,7 @@ const login = async (
     req: express.Request,
     res: express.Response
 ): Promise<void> => {
-    const email = req.body.email;
+    const email = req.body.email?.toLowerCase();
     const pswd = req.body.pswd;
 
     // check if email and pswd are not null
