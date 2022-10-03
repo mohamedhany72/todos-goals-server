@@ -4,8 +4,7 @@ import { User } from "../models/user";
 import dotenv from "dotenv";
 
 dotenv.config();
-const {FRONT_END_ROOT_URL} = process.env;
-
+const { FRONT_END_ROOT_URL } = process.env;
 
 const sendVerificationEmail = (user: User): void => {
     const verify = createVerifyToken(user);

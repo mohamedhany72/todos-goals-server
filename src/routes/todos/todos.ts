@@ -51,7 +51,7 @@ const toggleTodo = async (
     const id = req.body.id;
 
     // console.log(user.id);
-    
+
     // select todo
     const result = await model.show(id as string | number);
 

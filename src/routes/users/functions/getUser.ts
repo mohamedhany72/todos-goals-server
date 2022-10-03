@@ -9,20 +9,20 @@ const getUser = async (
 ): Promise<void> => {
     const user = res.locals.user as User;
 
-    if(!user.verified){
-        const {success, load} = await model.select(user.email);
-        if(!success){
+    if (!user.verified) {
+        const { success, load } = await model.select(user.email);
+        if (!success) {
             res.status(500).send("Server side error!");
             return;
         }
 
-        if((load as User).verified){
+        if ((load as User).verified) {
             user.verified = true;
         }
     }
 
-    res.status(200).json({user});
+    res.status(200).json({ user });
     return;
-}
+};
 
 export default getUser;

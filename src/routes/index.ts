@@ -10,5 +10,6 @@ const routes = express.Router();
 routes.use("/users", users);
 routes.use("/todos", accessAuth, isVerified, todos);
 routes.use("/goals", accessAuth, isVerified, goals);
+routes.use("/images", express.static("uploads"));
 
 export default routes;

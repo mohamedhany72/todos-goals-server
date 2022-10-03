@@ -20,6 +20,8 @@ const update = async (
 
     const name = req.body.name as string;
     const gender = req.body.gender;
+    const fileName = req?.file?.filename || null;
+    console.log(`fileName ${fileName || "nofile"}`);
 
     const oldUser = res.locals.user;
 
@@ -67,7 +69,7 @@ const update = async (
     }
 
     // send back the successfull response
-    refreshCookie(res, refresh)
+    refreshCookie(res, refresh);
     res.status(200).json({
         user,
         access

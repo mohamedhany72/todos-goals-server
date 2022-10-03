@@ -14,11 +14,11 @@ const refresh = async (
     const oldUser = res.locals.user as User;
     const browserObj = res.locals.browser;
     const oldRefresh = req.cookies.refresh;
-    
+
     // case that user is not verified
     let user: User;
-    if(!oldUser.verified){
-        const {load} = await model.select(oldUser.email)
+    if (!oldUser.verified) {
+        const { load } = await model.select(oldUser.email);
         user = load as User;
     } else {
         user = oldUser;
@@ -38,16 +38,14 @@ const refresh = async (
         return;
     }
 
-
     if (!result.success) {
         clearCookies(res);
         res.status(401).send(result.msg);
         return;
     }
 
-    
     refreshCookie(res, result.refresh as string);
-    
+
     res.status(200).json({
         user,
         access

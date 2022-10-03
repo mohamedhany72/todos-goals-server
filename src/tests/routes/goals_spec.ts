@@ -128,7 +128,7 @@ describe("Testing Routes: Goals", (): void => {
     });
 
     it("test 'delete goal' that don't exist", async (): Promise<void> => {
-        const wrongID = (goal.id as number) + 1
+        const wrongID = (goal.id as number) + 1;
         const response = await request
             .delete(`${mainRoute}/${wrongID}`)
             .set("Authorization", access);
