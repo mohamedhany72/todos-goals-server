@@ -2,7 +2,7 @@
 
 node_modules/
 
-build/
+
 
 # exclude everything
 src/temp/*
