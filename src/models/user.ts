@@ -118,7 +118,7 @@ export class UserModel {
         id: string | number,
         name: string,
         gender: number | string,
-        picurl: string
+        picurl: string | null
     ): Promise<ReturnJson> {
         const query =
             "UPDATE public.users\

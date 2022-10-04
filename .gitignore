@@ -3,3 +3,15 @@
 node_modules/
 
 build/
+
+# exclude everything
+src/temp/*
+
+# exception to the rule
+!src/temp/.gitkeep 
+
+# exclude everything
+src/uploads/*
+
+# exception to the rule
+!src/uploads/.gitkeep 

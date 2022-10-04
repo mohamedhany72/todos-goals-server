@@ -18,7 +18,7 @@ import browserAuth from "../../utils/middlewares/browserAuth";
 import sendcsrf from "./functions/sendCsrf";
 import sendVerify from "./functions/sendVerify";
 import getUser from "./functions/getUser";
-import uploadProfile from "../../utils/middlewares/uploadProfile";
+import formParser from "../../utils/middlewares/formParser";
 
 const users = express.Router();
 const csrfProtection = csrf({ cookie: true });
@@ -41,13 +41,12 @@ users.get("/sendverify", accessAuth, sendVerify); //done
 // csrf get
 users.get("/csrf", accessAuth, csrfProtection, sendcsrf); // done
 
-// update post
 users.put(
     "/update",
     accessAuth,
     browserAuth,
+    formParser,
     csrfProtection,
-    uploadProfile,
     update
 ); // done
 

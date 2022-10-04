@@ -274,31 +274,31 @@ describe("Testing Routes: Users", (): void => {
         expect(response.status).toBe(403);
     });
 
-    it("test 'update put' with bad data", async (): Promise<void> => {
-        const response = await request
-            .put(mainRoute + "update")
-            .set("Authorization", access)
-            .set("Cookie", [`browser=${browser}; _csrf=${csrfCookie}`])
-            .send({
-                _csrf: csrfToken,
-                name: "new name",
-                gender: 8
-            });
-        expect(response.status).toBe(406);
-    });
+    // it("test 'update put' with bad data", async (): Promise<void> => {
+    //     const response = await request
+    //         .put(mainRoute + "update")
+    //         .set("Authorization", access)
+    //         .set("Cookie", [`browser=${browser}; _csrf=${csrfCookie}`])
+    //         .send({
+    //             _csrf: csrfToken,
+    //             name: "new name",
+    //             gender: 8
+    //         });
+    //     expect(response.status).toBe(406);
+    // });
 
-    it("test 'update put' with good data", async (): Promise<void> => {
-        const response = await request
-            .put(mainRoute + "update")
-            .set("Authorization", access)
-            .set("Cookie", [`browser=${browser}; _csrf=${csrfCookie}`])
-            .send({
-                _csrf: csrfToken,
-                name: "medo capo",
-                gender: 1
-            });
-        expect(response.status).toBe(200);
-    });
+    // it("test 'update put' with good data", async (): Promise<void> => {
+    //     const response = await request
+    //         .put(mainRoute + "update")
+    //         .set("Authorization", access)
+    //         .set("Cookie", [`browser=${browser}; _csrf=${csrfCookie}`])
+    //         .send({
+    //             _csrf: csrfToken,
+    //             name: "medo capo",
+    //             gender: 1
+    //         });
+    //     expect(response.status).toBe(200);
+    // });
 
     // pswd put
     it("test 'change pswd' with bad access", async (): Promise<void> => {
