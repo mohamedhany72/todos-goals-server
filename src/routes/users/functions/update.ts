@@ -33,7 +33,11 @@ const update = async (
     const tempDir = path.join(__dirname, "..", "..", "..", "temp");
     const uploadDir = path.join(__dirname, "..", "..", "..", "uploads");
 
+    // @ts-ignore
+    console.log("files: ", req.files);
+
     if (file && !removePic) {
+        console.log("ok");
         const {
             size: fileSize,
             type: fileType,
@@ -72,8 +76,6 @@ const update = async (
         // })
     }
 
-    // const oldUser = res.locals.user;
-
     // validate data
     if (name == null || !NAME_REGEX.test(name)) {
         if (file) {
@@ -97,7 +99,6 @@ const update = async (
         name,
         gender,
         removePic ? null : (fileName as string | null)
-        // `${BACK_END_ROOT_URL}api/images/${fileName}`
     );
 
     if (!success) {
@@ -106,7 +107,10 @@ const update = async (
         }
         res.status(500).send(`Server side error:: ${msg}`);
         return;
-    } else if (removePic || oldUser.picurl) {
+    } else if (
+        (removePic && oldUser.picurl) ||
+        (oldUser.picurl !== fileName && oldUser.picurl)
+    ) {
         fse.remove(path.join(uploadDir, oldUser.picurl as string));
     }
 
