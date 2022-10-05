@@ -10,7 +10,7 @@ import destructureUser from "../../../utils/destructureUser";
 import schema from "../../../utils/schema";
 import sendVerificationEmail from "../../../utils/sendVerify";
 import { createBrowser } from "../../../utils/createBrowser";
-import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
+// import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 
 const model = new UserModel();
 // const tokens = new TokenModel();

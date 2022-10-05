@@ -1,11 +1,11 @@
 import express from "express";
 import { TokenModel } from "../../../models/token";
-import { clearCookies } from "../../../utils/manageCookies";
+// import { clearCookies } from "../../../utils/manageCookies";
 
 const tokens = new TokenModel();
 
 const logoutAll = async (
-    req: express.Request,
+    _req: express.Request,
     res: express.Response
 ): Promise<void> => {
     const user = res.locals.user;

@@ -3,7 +3,20 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 
 dotenv.config();
-const { TOKEN_SECRET } = process.env;
+const { TOKEN_SECRET, CSRF_SECRET } = process.env;
+
+const makeid = (length: number): string => {
+    let result = "";
+    const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const charactersLength = characters.length;
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+        );
+    }
+    return result;
+};
 
 const createRefreshToken = (user: User): string => {
     const refreshToken = jwt.sign(
@@ -71,10 +84,27 @@ const createPswdToken = (id: string | number): string => {
     return pswdToken;
 };
 
+const createCsrfToken = (id: string | number): string => {
+    const unique = makeid(6);
+    const csrfToken = jwt.sign(
+        {
+            id,
+            type: "csrf",
+            string: unique
+        },
+        CSRF_SECRET as string,
+        {
+            expiresIn: "30m"
+        }
+    );
+    return csrfToken;
+};
+
 export {
     createRefreshToken,
     createBrowserToken,
     createAccessToken,
     createVerifyToken,
-    createPswdToken
+    createPswdToken,
+    createCsrfToken
 };

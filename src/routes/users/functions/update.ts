@@ -7,7 +7,7 @@ import {
 import destructureUser from "../../../utils/destructureUser";
 import { updateRefresh } from "../../../utils/createBrowser";
 import { NAME_REGEX } from "./register";
-import { refreshCookie } from "../../../utils/manageCookies";
+// import { refreshCookie } from "../../../utils/manageCookies";
 import fse from "fs-extra";
 import path from "path";
 

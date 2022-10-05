@@ -1,5 +1,5 @@
 import express from "express";
-import csrf from "csurf";
+// import csrf from "csurf";
 import login from "./functions/login";
 import accessAuth from "../../utils/middlewares/accessAuth";
 import refreshAuth from "../../utils/middlewares/refreshAuth";
@@ -19,9 +19,10 @@ import sendcsrf from "./functions/sendCsrf";
 import sendVerify from "./functions/sendVerify";
 import getUser from "./functions/getUser";
 import formParser from "../../utils/middlewares/formParser";
+import csrfProtection from "../../utils/middlewares/csrfProtection";
 
 const users = express.Router();
-const csrfProtection = csrf({ cookie: true });
+// const csrfProtection = csrf({ cookie: true });
 
 // login
 users.post("/login", login); // done
@@ -39,7 +40,7 @@ users.get("/verify/:verify", verify); // done
 users.get("/sendverify", accessAuth, sendVerify); //done
 
 // csrf get
-users.get("/csrf", accessAuth, csrfProtection, sendcsrf); // done
+users.get("/csrf", accessAuth, sendcsrf); // done
 
 users.put(
     "/update",
@@ -75,7 +76,7 @@ users.delete("/logout", accessAuth, browserAuth, logout); // done
 users.delete("/logoutall", accessAuth, browserAuth, logoutAll);
 
 // delete user delete
-users.delete("/delete", accessAuth, csrfProtection, deleteUser);
+users.post("/delete", accessAuth, csrfProtection, deleteUser);
 
 export default users;
 
