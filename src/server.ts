@@ -29,7 +29,8 @@ const allowedOrigins = [
     "http://localhost:3000",
     // "http://localhost:3001",
     "https://mohamedhany72.github.io",
-    FRONT_END_ROOT_URL as string
+    "https://todos-goals-client.vercel.app"
+    // FRONT_END_ROOT_URL as string
 ];
 
 const options: cors.CorsOptions = {
