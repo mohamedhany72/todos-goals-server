@@ -44,12 +44,12 @@ const refresh = async (
         return;
     }
 
-    refreshCookie(res, result.refresh as string);
+    // refreshCookie(res, result.refresh as string);
 
     res.status(200).json({
         user,
-        access
-        // refresh: result.refresh
+        access,
+        refresh: result.refresh
     });
 };
 

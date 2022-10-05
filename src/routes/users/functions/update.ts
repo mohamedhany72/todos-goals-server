@@ -133,11 +133,11 @@ const update = async (
     }
 
     // send back the successfull response
-    refreshCookie(res, refresh);
+    // refreshCookie(res, refresh);
     res.status(200).json({
         user,
-        access
-        // , refresh
+        access,
+        refresh
     });
     return;
 };

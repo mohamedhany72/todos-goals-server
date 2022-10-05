@@ -18,7 +18,9 @@ const logoutAll = async (
 
     // res.clearCookie("browser");
     // res.clearCookie("refresh");
-    clearCookies(res);
+
+    // clearCookies(res);
+
     res.status(200).send("User logged out from this device!");
     return;
 };
