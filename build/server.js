@@ -14,7 +14,7 @@ var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var allowedRequests_1 = __importDefault(require("./utils/middlewares/allowedRequests"));
 // import https from "https";
 dotenv_1.default.config();
-var PORT = process.env.PORT;
+var _a = process.env, PORT = _a.PORT, FRONT_END_ROOT_URL = _a.FRONT_END_ROOT_URL;
 var app = (0, express_1.default)();
 // middleware section
 app.use(body_parser_1.default.urlencoded({ extended: false }));
@@ -24,7 +24,13 @@ app.use((0, morgan_1.default)("common"));
 // whitelist
 // Add a list of allowed origins.
 // If you have more origins you would like to add, you can add them to the array below.
-var allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
+var allowedOrigins = [
+    "http://localhost:3000",
+    // "http://localhost:3001",
+    "https://mohamedhany72.github.io",
+    "https://todos-goals-client.vercel.app"
+    // FRONT_END_ROOT_URL as string
+];
 var options = {
     origin: allowedOrigins,
     credentials: true

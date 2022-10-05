@@ -38,9 +38,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var user_1 = require("../../../models/user");
 var createBrowser_1 = require("../../../utils/createBrowser");
-var manageCookies_1 = require("../../../utils/manageCookies");
+// import { refreshCookie } from "../../../utils/manageCookies";
 var createTokens_1 = require("../../../utils/createTokens");
-var manageCookies_2 = require("../../../utils/manageCookies");
+var manageCookies_1 = require("../../../utils/manageCookies");
 var model = new user_1.UserModel();
 var refresh = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var oldUser, browserObj, oldRefresh, user, load, access, result;
@@ -69,15 +69,15 @@ var refresh = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
                     return [2 /*return*/];
                 }
                 if (!result.success) {
-                    (0, manageCookies_2.clearCookies)(res);
+                    (0, manageCookies_1.clearCookies)(res);
                     res.status(401).send(result.msg);
                     return [2 /*return*/];
                 }
-                (0, manageCookies_1.refreshCookie)(res, result.refresh);
+                // refreshCookie(res, result.refresh as string);
                 res.status(200).json({
                     user: user,
-                    access: access
-                    // refresh: result.refresh
+                    access: access,
+                    refresh: result.refresh
                 });
                 return [2 /*return*/];
         }

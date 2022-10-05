@@ -48,7 +48,7 @@ var destructureUser_1 = __importDefault(require("../../../utils/destructureUser"
 var schema_1 = __importDefault(require("../../../utils/schema"));
 var sendVerify_1 = __importDefault(require("../../../utils/sendVerify"));
 var createBrowser_1 = require("../../../utils/createBrowser");
-var manageCookies_1 = require("../../../utils/manageCookies");
+// import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 var model = new user_1.UserModel();
 // const tokens = new TokenModel();
 exports.NAME_REGEX = /^[A-z][A-z0-9-_ ]{2,23}$/;
@@ -119,13 +119,13 @@ var register = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
                 //     `refresh=${refresh}; Expires=${refreshDate}; HttpOnly; Path=/`,
                 //     `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
                 // ]);
-                (0, manageCookies_1.refreshCookie)(res, refresh);
-                (0, manageCookies_1.browserCookie)(res, browser);
+                // refreshCookie(res, refresh as string);
+                // browserCookie(res, browser as string);
                 res.status(200).json({
                     user: user,
-                    access: access
-                    // refresh,
-                    // browser
+                    access: access,
+                    refresh: refresh,
+                    browser: browser
                 });
                 return [2 /*return*/];
         }

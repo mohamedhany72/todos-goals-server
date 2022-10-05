@@ -11,7 +11,7 @@ var TOKEN_SECRET = process.env.TOKEN_SECRET;
 var accessAuth = function (req, res, next) {
     var _a;
     var token = (_a = req.headers.authorization) === null || _a === void 0 ? void 0 : _a.split(" ")[1];
-    // console.log(`authorization: ${req.headers.authorization}`)
+    console.log("authorization: ".concat(req.headers.authorization));
     jsonwebtoken_1.default.verify(token, TOKEN_SECRET, function (err, decoded) {
         if (err) {
             res.status(403).send("Token expired or not valid");

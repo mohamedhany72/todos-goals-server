@@ -9,7 +9,7 @@ dotenv_1.default.config();
 var TOKEN_SECRET = process.env.TOKEN_SECRET;
 var browserAuth = function (req, res, next) {
     var token = req.cookies.browser;
-    // console.log(`authorization: ${req.headers.authorization}`)
+    console.log("browser token from browser auth: ".concat(token));
     jsonwebtoken_1.default.verify(token, TOKEN_SECRET, function (err, decoded) {
         if (err) {
             res.status(403).send("Token expired or not valid");

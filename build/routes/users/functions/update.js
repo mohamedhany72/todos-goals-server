@@ -44,7 +44,7 @@ var createTokens_1 = require("../../../utils/createTokens");
 var destructureUser_1 = __importDefault(require("../../../utils/destructureUser"));
 var createBrowser_1 = require("../../../utils/createBrowser");
 var register_1 = require("./register");
-var manageCookies_1 = require("../../../utils/manageCookies");
+// import { refreshCookie } from "../../../utils/manageCookies";
 var fs_extra_1 = __importDefault(require("fs-extra"));
 var path_1 = __importDefault(require("path"));
 var model = new user_1.UserModel();
@@ -128,11 +128,11 @@ var update = function (req, res) { return __awaiter(void 0, void 0, void 0, func
                     refresh = result.refresh;
                 }
                 // send back the successfull response
-                (0, manageCookies_1.refreshCookie)(res, refresh);
+                // refreshCookie(res, refresh);
                 res.status(200).json({
                     user: user,
-                    access: access
-                    // , refresh
+                    access: access,
+                    refresh: refresh
                 });
                 return [2 /*return*/];
         }

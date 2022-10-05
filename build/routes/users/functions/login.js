@@ -45,7 +45,7 @@ var createTokens_1 = require("../../../utils/createTokens");
 var dotenv_1 = __importDefault(require("dotenv"));
 var destructureUser_1 = __importDefault(require("../../../utils/destructureUser"));
 var createBrowser_1 = require("../../../utils/createBrowser");
-var manageCookies_1 = require("../../../utils/manageCookies");
+// import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 dotenv_1.default.config();
 var pepper = process.env.BCRYPT_PASSWORD;
 var model = new user_1.UserModel();
@@ -88,12 +88,15 @@ var login = function (req, res) { return __awaiter(void 0, void 0, void 0, funct
                     return [2 /*return*/];
                 }
                 browser = result.browser;
-                (0, manageCookies_1.refreshCookie)(res, refresh);
-                (0, manageCookies_1.browserCookie)(res, browser);
+                // refreshCookie(res, refresh as string);
+                // browserCookie(res, browser as string);
+                console.log("refresh: ", refresh);
+                console.log("browser: ", browser);
                 res.status(200).json({
                     user: user,
-                    access: access
-                    // , refresh, browser
+                    access: access,
+                    refresh: refresh,
+                    browser: browser
                 });
                 return [2 /*return*/];
         }

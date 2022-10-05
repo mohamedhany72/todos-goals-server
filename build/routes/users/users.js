@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
-var csurf_1 = __importDefault(require("csurf"));
+// import csrf from "csurf";
 var login_1 = __importDefault(require("./functions/login"));
 var accessAuth_1 = __importDefault(require("../../utils/middlewares/accessAuth"));
 var refreshAuth_1 = __importDefault(require("../../utils/middlewares/refreshAuth"));
@@ -24,8 +24,9 @@ var sendCsrf_1 = __importDefault(require("./functions/sendCsrf"));
 var sendVerify_1 = __importDefault(require("./functions/sendVerify"));
 var getUser_1 = __importDefault(require("./functions/getUser"));
 var formParser_1 = __importDefault(require("../../utils/middlewares/formParser"));
+var csrfProtection_1 = __importDefault(require("../../utils/middlewares/csrfProtection"));
 var users = express_1.default.Router();
-var csrfProtection = (0, csurf_1.default)({ cookie: true });
+// const csrfProtection = csrf({ cookie: true });
 // login
 users.post("/login", login_1.default); // done
 // register
@@ -37,16 +38,16 @@ users.get("/verify/:verify", verify_1.default); // done
 // send verify
 users.get("/sendverify", accessAuth_1.default, sendVerify_1.default); //done
 // csrf get
-users.get("/csrf", accessAuth_1.default, csrfProtection, sendCsrf_1.default); // done
-users.put("/update", accessAuth_1.default, browserAuth_1.default, formParser_1.default, csrfProtection, update_1.default); // done
+users.get("/csrf", accessAuth_1.default, sendCsrf_1.default); // done
+users.put("/update", accessAuth_1.default, browserAuth_1.default, formParser_1.default, csrfProtection_1.default, update_1.default); // done
 // change password post
-users.put("/changepassword", accessAuth_1.default, csrfProtection, changePswd_1.default); // done
+users.put("/changepassword", accessAuth_1.default, csrfProtection_1.default, changePswd_1.default); // done
 // forget password post (to send email with token)
 users.post("/forgetpassword", forgetPswd_1.default); // done
 // recover password get (to update password)
-users.get("/recoverpassword/:code", csrfProtection, recoverPswd_1.recoverPswdGet);
+users.get("/recoverpassword/:code", csrfProtection_1.default, recoverPswd_1.recoverPswdGet);
 // recover password put (to update password)
-users.put("/recoverpassword", csrfProtection, recoverPswd_1.recoverPswdPut); // done
+users.put("/recoverpassword", csrfProtection_1.default, recoverPswd_1.recoverPswdPut); // done
 // refresh
 users.get("/refresh", refreshAuth_1.default, browserAuth_1.default, refresh_1.default);
 // generate access
@@ -56,6 +57,6 @@ users.delete("/logout", accessAuth_1.default, browserAuth_1.default, logout_1.de
 // logout all browsers
 users.delete("/logoutall", accessAuth_1.default, browserAuth_1.default, logoutAll_1.default);
 // delete user delete
-users.delete("/delete", accessAuth_1.default, csrfProtection, delete_1.default);
+users.post("/delete", accessAuth_1.default, csrfProtection_1.default, delete_1.default);
 exports.default = users;
 // get users --> not in this app

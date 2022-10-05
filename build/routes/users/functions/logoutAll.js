@@ -37,9 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var token_1 = require("../../../models/token");
-var manageCookies_1 = require("../../../utils/manageCookies");
+// import { clearCookies } from "../../../utils/manageCookies";
 var tokens = new token_1.TokenModel();
-var logoutAll = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+var logoutAll = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var user, success;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -54,7 +54,7 @@ var logoutAll = function (req, res) { return __awaiter(void 0, void 0, void 0, f
                 }
                 // res.clearCookie("browser");
                 // res.clearCookie("refresh");
-                (0, manageCookies_1.clearCookies)(res);
+                // clearCookies(res);
                 res.status(200).send("User logged out from this device!");
                 return [2 /*return*/];
         }

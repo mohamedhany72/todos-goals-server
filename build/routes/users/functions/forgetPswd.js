@@ -66,7 +66,7 @@ var forgetPswd = function (req, res) { return __awaiter(void 0, void 0, void 0, 
                 // send email to user
                 (0, mailer_1.default)(user.email, "Recover Password", "forgetPswd", {
                     name: user.name,
-                    code: "".concat(FRONT_END_ROOT_URL, "recover/").concat(pswdToken)
+                    code: "".concat(FRONT_END_ROOT_URL, "/recover/").concat(pswdToken)
                 });
                 res.status(200).send("Email sent!");
                 return [2 /*return*/];

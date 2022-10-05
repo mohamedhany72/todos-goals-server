@@ -12,7 +12,7 @@ var sendVerificationEmail = function (user) {
     var verify = (0, createTokens_1.createVerifyToken)(user);
     var temp = "verification";
     var subject = "Verify Your Account!";
-    var link = "".concat(FRONT_END_ROOT_URL, "verify/").concat(verify);
+    var link = "".concat(FRONT_END_ROOT_URL, "/verify/").concat(verify);
     var context = {
         name: user.name,
         link: link

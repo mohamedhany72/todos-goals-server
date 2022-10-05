@@ -10,6 +10,7 @@ dotenv_1.default.config();
 var TOKEN_SECRET = process.env.TOKEN_SECRET;
 var refreshAuth = function (req, res, next) {
     var token = req.cookies.refresh;
+    console.log("refresh token from refresh auth: ", token);
     jsonwebtoken_1.default.verify(token, TOKEN_SECRET, function (err, decoded) {
         if (err) {
             res.status(403).send("Token expired or not valid");
