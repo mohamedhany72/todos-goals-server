@@ -11,7 +11,7 @@ const sendVerificationEmail = (user: User): void => {
     const temp = "verification";
 
     const subject = "Verify Your Account!";
-    const link = `${FRONT_END_ROOT_URL}verify/${verify}`;
+    const link = `${FRONT_END_ROOT_URL}/verify/${verify}`;
     const context = {
         name: user.name,
         link

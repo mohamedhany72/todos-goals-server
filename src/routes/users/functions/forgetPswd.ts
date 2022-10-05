@@ -31,7 +31,7 @@ const forgetPswd = async (
     // send email to user
     mailer(user.email, "Recover Password", "forgetPswd", {
         name: user.name,
-        code: `${FRONT_END_ROOT_URL}recover/${pswdToken}`
+        code: `${FRONT_END_ROOT_URL}/recover/${pswdToken}`
     });
 
     res.status(200).send("Email sent!");
