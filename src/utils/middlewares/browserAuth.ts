@@ -12,7 +12,7 @@ const browserAuth = (
 ): void => {
     const token = req.cookies.browser;
 
-    // console.log(`authorization: ${req.headers.authorization}`)
+    console.log(`browser token from browser auth: ${token}`)
     jwt.verify(token as string, TOKEN_SECRET as string, (err, decoded) => {
         if (err) {
             res.status(403).send("Token expired or not valid");

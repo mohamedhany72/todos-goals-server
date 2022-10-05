@@ -10,7 +10,7 @@ import allowedMethods from "./utils/middlewares/allowedRequests";
 // import https from "https";
 
 dotenv.config();
-const { PORT } = process.env;
+const { PORT, FRONT_END_ROOT_URL } = process.env;
 
 const app = express();
 
@@ -28,7 +28,8 @@ app.use(morgan("common"));
 const allowedOrigins = [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://mohamedhany72.github.io"
+    "https://mohamedhany72.github.io",
+    FRONT_END_ROOT_URL as string
 ];
 
 const options: cors.CorsOptions = {
