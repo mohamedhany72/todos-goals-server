@@ -27,7 +27,7 @@ app.use(morgan("common"));
 // If you have more origins you would like to add, you can add them to the array below.
 const allowedOrigins = [
     "http://localhost:3000",
-    "http://localhost:3001",
+    // "http://localhost:3001",
     "https://mohamedhany72.github.io",
     FRONT_END_ROOT_URL as string
 ];
