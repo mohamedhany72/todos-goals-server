@@ -7,6 +7,7 @@ import cors from "cors";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import allowedMethods from "./utils/middlewares/allowedRequests";
+import path from "path";
 // import https from "https";
 
 dotenv.config();
@@ -29,7 +30,8 @@ const allowedOrigins = [
     "http://localhost:3000",
     // "http://localhost:3001",
     "https://mohamedhany72.github.io",
-    "https://todos-goals-client.vercel.app"
+    "https://todos-goals-client.vercel.app",
+    "https://todos-goals.onrender.com"
     // FRONT_END_ROOT_URL as string
 ];
 
@@ -40,9 +42,12 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 
 app.use(helmet());
+const wwwpath = path.join(__dirname, "..", "www") ;
+
+app.use(express.static(wwwpath));
 
 app.get("/", (_req: express.Request, res: express.Response): void => {
-    res.send("app running!");
+    res.sendFile(path.join(wwwpath, "index.html"));
 });
 
 app.use("/api", allowedMethods, routes);
