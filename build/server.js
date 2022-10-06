@@ -12,6 +12,7 @@ var cors_1 = __importDefault(require("cors"));
 var morgan_1 = __importDefault(require("morgan"));
 var cookie_parser_1 = __importDefault(require("cookie-parser"));
 var allowedRequests_1 = __importDefault(require("./utils/middlewares/allowedRequests"));
+var path_1 = __importDefault(require("path"));
 // import https from "https";
 dotenv_1.default.config();
 var _a = process.env, PORT = _a.PORT, FRONT_END_ROOT_URL = _a.FRONT_END_ROOT_URL;
@@ -28,7 +29,8 @@ var allowedOrigins = [
     "http://localhost:3000",
     // "http://localhost:3001",
     "https://mohamedhany72.github.io",
-    "https://todos-goals-client.vercel.app"
+    "https://todos-goals-client.vercel.app",
+    "https://todos-goals.onrender.com"
     // FRONT_END_ROOT_URL as string
 ];
 var options = {
@@ -37,8 +39,10 @@ var options = {
 };
 app.use((0, cors_1.default)(options));
 app.use((0, helmet_1.default)());
+var wwwpath = path_1.default.join(__dirname, "..", "www");
+app.use(express_1.default.static(wwwpath));
 app.get("/", function (_req, res) {
-    res.send("app running!");
+    res.sendFile(path_1.default.join(wwwpath, "index.html"));
 });
 app.use("/api", allowedRequests_1.default, routes_1.default);
 app.listen(PORT, function () {
