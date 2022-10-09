@@ -5,13 +5,13 @@ node_modules/
 
 
 # exclude everything
-src/temp/*
+temp/*
 
 # exception to the rule
-!src/temp/.gitkeep 
+!temp/.gitkeep 
 
 # exclude everything
-src/uploads/*
+uploads/*
 
 # exception to the rule
-!src/uploads/.gitkeep 
+!uploads/.gitkeep 

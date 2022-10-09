@@ -30,11 +30,11 @@ const update = async (
 
     let fileName = oldUser.picurl;
 
-    const tempDir = path.join(__dirname, "..", "..", "..", "temp");
-    const uploadDir = path.join(__dirname, "..", "..", "..", "uploads");
+    const tempDir = path.join(__dirname, "..", "..", "..", "..", "temp");
+    const uploadDir = path.join(__dirname, "..", "..", "..", "..", "uploads");
 
     // @ts-ignore
-    console.log("files: ", req.files);
+    // console.log("files: ", req.files);
 
     if (file && !removePic) {
         console.log("ok");
