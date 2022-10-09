@@ -14,7 +14,7 @@ const csrfProtection = (
 ): void => {
     const token = req.body._csrf;
     const user = res.locals.user as User;
-    // console.log("csrf token: ", token)
+    console.log("csrf token: ", token)
     if (!token) {
         res.status(403).send("Invalid CSRF token!");
         return;

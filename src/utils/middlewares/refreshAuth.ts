@@ -13,7 +13,7 @@ const refreshAuth = (
     next: express.NextFunction
 ): void => {
     const token = req.cookies.refresh;
-    // console.log("refresh token from refresh auth: ", token);
+    console.log("refresh token from refresh auth: ", token);
     jwt.verify(token as string, TOKEN_SECRET as string, (err, decoded) => {
         if (err) {
             res.status(403).send("Token expired or not valid");

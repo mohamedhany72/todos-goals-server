@@ -34,7 +34,7 @@ const update = async (
     const uploadDir = path.join(__dirname, "..", "..", "..", "..", "uploads");
 
     // @ts-ignore
-    // console.log("files: ", req.files);
+    console.log("files: ", req.files);
 
     if (file && !removePic) {
         console.log("ok");
