@@ -32,6 +32,8 @@ const update = async (
 
     const tempDir = path.join(__dirname, "..", "..", "..", "..", "temp");
     const uploadDir = path.join(__dirname, "..", "..", "..", "..", "uploads");
+    console.log("tempDir: ", tempDir);
+    console.log("uploadDir: ", uploadDir);
 
     // @ts-ignore
     console.log("files: ", req.files);
