@@ -1,6 +1,6 @@
 import express from "express";
 import { TokenModel } from "../../../models/token";
-// import { clearCookies } from "../../../utils/manageCookies";
+import { clearCookies } from "../../../utils/manageCookies";
 
 const tokens = new TokenModel();
 
@@ -25,7 +25,7 @@ const logout = async (
     // res.clearCookie("browser");
     // res.clearCookie("refresh");
 
-    // clearCookies(res);
+    clearCookies(res);
 
     res.status(200).send("User logged out from this device!");
     return;

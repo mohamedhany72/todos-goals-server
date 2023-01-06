@@ -9,7 +9,7 @@ import {
 import dotenv from "dotenv";
 import destructureUser from "../../../utils/destructureUser";
 import { createBrowser } from "../../../utils/createBrowser";
-// import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
+import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 
 dotenv.config();
 
@@ -61,15 +61,15 @@ const login = async (
 
     const browser = result.browser as string;
 
-    // refreshCookie(res, refresh as string);
-    // browserCookie(res, browser as string);
-    console.log("refresh: ", refresh);
-    console.log("browser: ", browser);
+    refreshCookie(res, refresh as string);
+    browserCookie(res, browser as string);
+    // console.log("refresh: ", refresh);
+    // console.log("browser: ", browser);
     res.status(200).json({
         user,
-        access,
-        refresh,
-        browser
+        access
+        // refresh,
+        // browser
     });
     return;
 };

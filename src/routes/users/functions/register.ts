@@ -10,7 +10,7 @@ import destructureUser from "../../../utils/destructureUser";
 import schema from "../../../utils/schema";
 import sendVerificationEmail from "../../../utils/sendVerify";
 import { createBrowser } from "../../../utils/createBrowser";
-// import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
+import { browserCookie, refreshCookie } from "../../../utils/manageCookies";
 
 const model = new UserModel();
 // const tokens = new TokenModel();
@@ -98,14 +98,14 @@ const register = async (
     //     `browser=${browser}; Expires=${browserDate}; HttpOnly; Path=/`
     // ]);
 
-    // refreshCookie(res, refresh as string);
-    // browserCookie(res, browser as string);
+    refreshCookie(res, refresh as string);
+    browserCookie(res, browser as string);
 
     res.status(200).json({
         user,
-        access,
-        refresh,
-        browser
+        access
+        // refresh,
+        // browser
     });
 
     return;

@@ -1,7 +1,7 @@
 import express from "express";
 import { User, UserModel } from "../../../models/user";
 import { updateRefresh } from "../../../utils/createBrowser";
-// import { refreshCookie } from "../../../utils/manageCookies";
+import { refreshCookie } from "../../../utils/manageCookies";
 import { createAccessToken } from "../../../utils/createTokens";
 import { clearCookies } from "../../../utils/manageCookies";
 
@@ -44,12 +44,12 @@ const refresh = async (
         return;
     }
 
-    // refreshCookie(res, result.refresh as string);
+    refreshCookie(res, result.refresh as string);
 
     res.status(200).json({
         user,
-        access,
-        refresh: result.refresh
+        access
+        // refresh: result.refresh
     });
 };
 
