@@ -21,7 +21,7 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-app.use(morgan("common"));
+app.use(morgan("dev"));
 
 // whitelist
 // Add a list of allowed origins.
