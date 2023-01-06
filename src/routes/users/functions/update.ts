@@ -17,6 +17,7 @@ const update = async (
     req: express.Request,
     res: express.Response
 ): Promise<void> => {
+    console.log("update route")
     const browserObj = res.locals.browser;
     const oldRefresh = req.cookies.refresh;
     const oldUser = res.locals.user as User;

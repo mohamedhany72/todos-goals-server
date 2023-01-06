@@ -13,7 +13,7 @@ const accessAuth = (
     next: express.NextFunction
 ): void => {
     const token = req.headers.authorization?.split(" ")[1];
-    console.log(`authorization: ${req.headers.authorization}`);
+    // console.log(`authorization: ${req.headers.authorization}`);
     jwt.verify(token as string, TOKEN_SECRET as string, (err, decoded) => {
         if (err) {
             res.status(403).send("Token expired or not valid");
