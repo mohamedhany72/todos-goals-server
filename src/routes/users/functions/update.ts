@@ -67,7 +67,7 @@ const update = async (
         const newFileName = Date.now() + "_" + oldFileName;
         fse.copySync(
             // path.join(tempDir, fileTempName),
-            fileTempName,
+            fileTempPath,
             path.join(uploadDir, newFileName)
         );
         // , err => {
