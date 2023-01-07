@@ -82,6 +82,8 @@ const update = async (
     // validate data
     if (name == null || !NAME_REGEX.test(name)) {
         if (file) {
+            console.log("1: ", uploadDir)
+            console.log("2: ", fileName)
             fse.remove(path.join(uploadDir, fileName as string));
         }
         res.status(406).send("name must have at least 3 characters!");
