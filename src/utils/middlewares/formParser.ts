@@ -2,7 +2,7 @@ import path from "path";
 import formData from "express-form-data";
 
 const options = {
-    uploadDir: path.join(__dirname, "..", "..", "temp"),
+    uploadDir: path.join(__dirname, "..", "..", "..", "temp"),
     autoClean: true
 };
 

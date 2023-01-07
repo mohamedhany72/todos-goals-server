@@ -34,8 +34,16 @@ const browserCookie = (res: express.Response, browser: string): void => {
 };
 
 const clearCookies = (res: express.Response): void => {
-    res.clearCookie("browser");
-    res.clearCookie("refresh");
+    res.clearCookie("browser", {
+        path: "/",
+        secure: true,
+        sameSite: "none"
+    });
+    res.clearCookie("refresh", {
+        path: "/",
+        secure: true,
+        sameSite: "none"
+    });
     // res.clearCookie("x-sign");
     // res.clearCookie("isLoggedIn");
 };
