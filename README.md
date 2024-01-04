@@ -1,4 +1,4 @@
-# Server for todos-goals app (my first SERN stack app)
+# Server for todos-goals app
 
 ## Information about the server
 - the server was built using express.js
